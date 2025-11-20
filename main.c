@@ -62,6 +62,12 @@ void print_failure(int num_guesses_left)
     */
 }
 
+void print_guesses(char incorrect_guess_list[][16], char correct_guess_list[][16], int incorrect_guess_cnt, int correct_guess_cnt)
+{
+    // Correct guesses : pundit unit
+    // Wrong guesses : dunt
+}
+
 /// <summary>
 /// Print title for game.
 /// </summary>
@@ -124,7 +130,7 @@ int main()
 
         print_scramble_header(scrambled);
 
-        printf("\nYou have %d guesses left\n", MAX_GUESSES - incorrect_guess_cnt);
+        printf("\nYou have %d guesses left\n", MAX_GUESSES - incorrect_guess_cnt, incorrect_guess_cnt, );
         print_hints();
 
 
@@ -150,6 +156,8 @@ int main()
             print_failure(MAX_GUESSES - incorrect_guess_cnt);
         }
 
+
+        print_guesses(incorrect_guess_list, correct_guess_list, incorrect_guess_cnt, correct_guess_cnt);
 
         // break if incorrect_guess_cnt >= MAX_GUESSES
 
