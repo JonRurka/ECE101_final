@@ -20,7 +20,7 @@ typedef struct wordnode_s {
 FILE* pick_text_file(void)
 {
     char filename[32];
-    int idx = rand() % 10;       // 0–9
+    int idx = 2;// rand() % 10;       // 0–9
 
     sprintf(filename, "WordSet%d.txt", idx);
 
@@ -89,7 +89,7 @@ void print_scramble_header(char scrambled[])
 
 void print_success(int gained_points, int total_points)
 {
-    printf("$$$ --- $$$ --- $$$ --- $$$ --- $$$ --- $$$\n");
+    printf("\n$$$ --- $$$ --- $$$ --- $$$ --- $$$ --- $$$\n");
     printf("Yay ... you got %d points\n", gained_points);
     printf("Total points: %d\n", total_points);
     printf("$$$ --- $$$ --- $$$ --- $$$ --- $$$ --- $$$\n\n");
@@ -97,7 +97,7 @@ void print_success(int gained_points, int total_points)
 
 void print_failure(int num_guesses_left)
 {
-    printf(":( --- :( --- :( --- :( --- :( --- :( --- :(\n");
+    printf("\n:( --- :( --- :( --- :( --- :( --- :( --- :(\n");
     printf("Oops ... you lost 1 guess\n");
     printf("You have %d guesses left\n", num_guesses_left);
     printf(":( --- :( --- :( --- :( --- :( --- :( --- :(\n\n");
@@ -238,15 +238,15 @@ void print_unguessed_words(wordnode *word_list, int num_words)
 
 void end_quit(int total_points, wordnode *word_list, int num_words)
 {
-    printf("|--- G o o d --- T r y ---|\n");
-    printf("|--- You got %d points ---|\n", total_points);
+    printf("\n|--- G o o d --- T r y ---|\n");
+    printf("|--- You got %d points ---|\n\n", total_points);
     print_unguessed_words(word_list, num_words);
     printf("Good Game ... Good Bye\n");
 }
 
 void end_out_of_guesses(int total_points)
 {
-    printf(":( --- :( --- :( --- :( --- :(\n");
+    printf("\n:( --- :( --- :( --- :( --- :(\n");
     printf("Oops, you used up all your guesses, You got %d points\n",
            total_points);
     printf("Better luck next time\n");
@@ -255,7 +255,7 @@ void end_out_of_guesses(int total_points)
 
 void end_all_correct(int total_points)
 {
-    printf("!!! --- !!! --- !!! --- !!! --- !!!\n");
+    printf("\n!!! --- !!! --- !!! --- !!! --- !!!\n");
     printf("You got %d points\n", total_points);
     printf("Congrats, You completed the list!\n");
     printf("Good Game ... Good Bye\n");
@@ -294,20 +294,20 @@ int main(void)
         return 0;
     }
 
-    // Spec: first word in every text file is the longest word. :contentReference[oaicite:1]{index=1}
+    // Spec: first word in every text file is the longest word.
     max_letters = (int)strlen(word_list[0].word);
 
     print_title();
 
     while (1) {
-        // Scramble the letters of the longest word every round (2.3).
+        // Scramble the letters of the longest word every round.
         scramble_word(scrambled, word_list[0].word, max_letters);
         print_scramble_header(scrambled);
 
         printf("You have %d guesses left\n", MAX_GUESSES - incorrect_guess_cnt);
         print_hints(word_list, num_words);
 
-        // Get a guess between 4 letters and the longest word length (2.5).
+        // Get a guess between 4 letters and the longest word length.
         while (1) {
             printf("Enter your guess (4-%d characters): ", max_letters);
             scanf("%15s", guess);
